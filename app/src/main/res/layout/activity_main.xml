@@ -79,4 +79,39 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/layoutInformacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutBotones"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/tvMatricula"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tvNombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:id="@+id/tvApellido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:id="@+id/tvCodigo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvApellido"
+            android:layout_marginTop="10dp" />
+
+    </LinearLayout>
+
 </RelativeLayout>

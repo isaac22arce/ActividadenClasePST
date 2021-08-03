@@ -8,20 +8,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText editTextMatricula, editTextNombres, editTextApellidos, editTextCodMateria;
     private Button btnRegistrar, btnLista;
+    private TextView tvMatricula, tvNombre, tvApellido, tvCodigo;
     AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "administracion", null, 1);
-    SQLiteDatabase db ;
+    SQLiteDatabase db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
 
         editTextMatricula = findViewById(R.id.editTextMatricula);
         editTextNombres = findViewById(R.id.editTextNombres);
@@ -29,6 +30,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editTextCodMateria = findViewById(R.id.editTextCodMateria);
         btnRegistrar = findViewById(R.id.btnRegistrar);
         btnLista = findViewById(R.id.btnLista);
+        tvMatricula = findViewById(R.id.tvMatricula);
+        tvNombre = findViewById(R.id.tvNombre);
+        tvApellido = findViewById(R.id.tvApellido);
+        tvCodigo = findViewById(R.id.tvCodigo);
 
         btnRegistrar.setOnClickListener(this);
         btnLista.setOnClickListener(this);
@@ -63,12 +68,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 matriculaText = editTextMatricula.getText().toString();
                 if (!matriculaText.isEmpty()) {
                     Cursor fila = db.rawQuery(
-                            "select matricula,nombre,apellido,codMateria from consejeros where" + " id_estudiante =" + matriculaText, null);
+                            "select matricula,nombres,apellidos,codMateria from consejeros where" + " matricula =" + matriculaText, null);
                     if (fila.moveToFirst()) {
-                        editTextMatricula.setText(fila.getString(0));
-                        editTextNombres.setText(fila.getString(1));
-                        editTextApellidos.setText(fila.getString(2));
-                        editTextCodMateria.setText(fila.getString(3));
+                        tvMatricula.setText("Matricula: " + fila.getString(0));
+                        tvNombre.setText("Nombre: " + fila.getString(1));
+                        tvApellido.setText("Apellido: " + fila.getString(2));
+                        tvCodigo.setText("Código Materia: " + fila.getString(3));
                         Toast.makeText(this, "Consulta realizada", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(this, "No existe estudiante", Toast.LENGTH_SHORT).show();
